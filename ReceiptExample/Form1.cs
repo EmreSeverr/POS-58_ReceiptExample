@@ -171,12 +171,7 @@ namespace ReceiptExample
 
             text = "Payment Type : Cash";
             e.Graphics.DrawString(text, drawFontArial10Bold, drawBrush, new Point(0, (int)y));
-            y += e.Graphics.MeasureString(text, drawFontArial10Bold).Height + 5;
-
-
-            text = "Aydın";
-            e.Graphics.DrawString(text, drawFontArial10Regular, drawBrush, new Point(50, (int)y));
-            y += e.Graphics.MeasureString(text, drawFontArial10Regular).Height + 5;
+            y += e.Graphics.MeasureString(text, drawFontArial10Bold).Height;
         }
 
         public static List<Product> GetProducts()
