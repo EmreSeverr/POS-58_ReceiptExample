@@ -87,10 +87,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="logo-vektorel-yazili-1.png" />
-    <None Include="Resources\a.png" />
     <None Include="Resources\logo.png" />
-    <None Include="Resources\logo-icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

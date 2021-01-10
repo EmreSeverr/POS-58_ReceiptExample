@@ -27,7 +27,12 @@ namespace ReceiptExample
             PrintReceiptForTransaction();
         }
 
-        public void PrintReceiptForTransaction()
+        private void button2_Click(object sender, EventArgs e)
+        {
+            PrintReceiptForTransaction(true);
+        }
+
+        public void PrintReceiptForTransaction(bool print = false)
         {
             PrintDocument recordDoc = new PrintDocument();
 
@@ -39,8 +44,14 @@ namespace ReceiptExample
             ps.PrinterName = "POS-58";
             recordDoc.PrinterSettings = ps;
 
-            printPreviewDialog1.Document = recordDoc;
-            printPreviewDialog1.ShowDialog();
+            if (print)
+                recordDoc.Print();
+            else
+            {
+                printPreviewDialog1.Document = recordDoc;
+                printPreviewDialog1.ShowDialog();
+            }
+            
 
             recordDoc.Dispose();
         }
@@ -64,18 +75,18 @@ namespace ReceiptExample
             drawFormatRight.Alignment = StringAlignment.Far;
 
 
-            e.Graphics.DrawImage(ReceiptExample.Properties.Resources.a, new PointF(x, y));
+            e.Graphics.DrawImage(ReceiptExample.Properties.Resources.logo, new PointF(x, y));
             y += 125;
 
-            string text = "Tarih     : " + DateTime.Now.Day + "." + DateTime.Now.Month + "." + DateTime.Now.Year;
+            string text = "Date       : " + DateTime.Now.Day + "." + DateTime.Now.Month + "." + DateTime.Now.Year;
             e.Graphics.DrawString(text, drawFontArial10Regular, drawBrush, new Point(0, (int)y));
             y += e.Graphics.MeasureString(text, drawFontArial10Regular).Height;
 
-            text = "Saat      : " + DateTime.Now.Hour + ":" + DateTime.Now.Minute;
+            text = "Time       : " + DateTime.Now.Hour + ":" + DateTime.Now.Minute;
             e.Graphics.DrawString(text, drawFontArial10Regular, drawBrush, new Point(0, (int)y));
             y += e.Graphics.MeasureString(text, drawFontArial10Regular).Height;
 
-            text = "Fiş No   : " + 52;
+            text = "Receipt No : " + 52;
             e.Graphics.DrawString(text, drawFontArial10Regular, drawBrush, new Point(0, (int)y));
             y += e.Graphics.MeasureString(text, drawFontArial10Regular).Height + 10;
 
@@ -83,13 +94,13 @@ namespace ReceiptExample
             e.Graphics.DrawLine(Pens.Black, 0, y, 225, y);
             y += 10;
 
-            text = "Ürün";
+            text = "Product";
             e.Graphics.DrawString(text, drawFontArial10Bold, drawBrush, new Point(0, (int)y));
 
-            text = "Ad.";
+            text = "Pe.";
             e.Graphics.DrawString(text, drawFontArial10Bold, drawBrush, new Point(115, (int)y));
 
-            text = "Tutar";
+            text = "Price";
             e.Graphics.DrawString(text, drawFontArial10Bold, drawBrush, new Point(145, (int)y));
             y += e.Graphics.MeasureString(text, drawFontArial10Bold).Height;
 
@@ -154,17 +165,17 @@ namespace ReceiptExample
             e.Graphics.DrawLine(Pens.Black, 0, y, 225, y);
             y += 10;
 
-            text = "Toplam Tutar : 125,75 TL";
+            text = "Total Price : 125,75";
             e.Graphics.DrawString(text, drawFontArial10Bold, drawBrush, new Point(0, (int)y));
             y += e.Graphics.MeasureString(text, drawFontArial10Bold).Height;
 
-            text = "Ödeme Şekli : Nakit";
+            text = "Payment Type : Cash";
             e.Graphics.DrawString(text, drawFontArial10Bold, drawBrush, new Point(0, (int)y));
             y += e.Graphics.MeasureString(text, drawFontArial10Bold).Height + 5;
 
 
-            text = "Aydın/Kardeşköy";
-            e.Graphics.DrawString(text, drawFontArial10Regular, drawBrush, new Point(40, (int)y));
+            text = "Aydın";
+            e.Graphics.DrawString(text, drawFontArial10Regular, drawBrush, new Point(50, (int)y));
             y += e.Graphics.MeasureString(text, drawFontArial10Regular).Height + 5;
         }
 
